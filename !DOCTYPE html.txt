@@ -1,0 +1,264 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>DespensApp - Tienda Virtual</title>
+<style>
+  body {
+    font-family: Arial, sans-serif;
+    margin:0; padding:0;
+    background: #f8f8f8;
+    color: #222;
+  }
+  header {
+    background: #333;
+    color: #fff;
+    padding: 10px 20px;
+    display: flex; align-items: center; justify-content: space-between;
+    flex-wrap: wrap;
+  }
+  header img {
+    height: 50px;
+  }
+  nav a {
+    color: white;
+    margin: 0 10px;
+    text-decoration: none;
+    font-weight: bold;
+  }
+  nav a:hover {
+    text-decoration: underline;
+  }
+  .contacto {
+    font-size: 14px;
+  }
+  main {
+    padding: 20px;
+  }
+  h2 {
+    margin-top: 40px;
+    margin-bottom: 10px;
+  }
+  /* Colores categorías */
+  .comestibles {
+    border-left: 6px solid orange;
+    background: #fcf9f4;
+    padding: 15px;
+  }
+  .comestibles h2 {
+    color: green;
+  }
+  .limpieza {
+    border-left: 6px solid blue;
+    background: #f0f7ff;
+    padding: 15px;
+  }
+  .limpieza h2 {
+    color: #ffcc00;
+  }
+  .higiene {
+    border-left: 6px solid #c080d8; /* lila */
+    background: #f9f0fa;
+    padding: 15px;
+  }
+  .higiene h2 {
+    color: #ff66cc; /* rosa */
+  }
+  .combos {
+    border-left: 6px solid #444;
+    background: #e0e0e0;
+    padding: 15px;
+  }
+
+  .producto {
+    display: flex;
+    justify-content: space-between;
+    margin: 8px 0;
+  }
+  .producto button {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+    border-radius: 3px;
+  }
+  .producto button:hover {
+    background-color: #555;
+  }
+
+  /* Carrito */
+  #carrito {
+    position: fixed;
+    right: 20px;
+    bottom: 20px;
+    background: #333;
+    color: white;
+    padding: 15px;
+    border-radius: 8px;
+    max-width: 300px;
+    font-size: 14px;
+    box-shadow: 0 0 10px #000a;
+    z-index: 999;
+  }
+  #carrito h3 {
+    margin-top: 0;
+    margin-bottom: 10px;
+  }
+  #lista-carrito {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 10px 0;
+    max-height: 150px;
+    overflow-y: auto;
+  }
+  #lista-carrito li {
+    margin-bottom: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  #lista-carrito li button {
+    background: #900;
+    border: none;
+    color: white;
+    padding: 2px 6px;
+    border-radius: 3px;
+    cursor: pointer;
+  }
+  #carrito button#enviarPedidoBtn {
+    background: #0a7;
+    border: none;
+    padding: 7px 15px;
+    font-weight: bold;
+    cursor: pointer;
+    color: white;
+    border-radius: 5px;
+    width: 100%;
+  }
+  #carrito button#enviarPedidoBtn:hover {
+    background: #0d9;
+  }
+</style>
+</head>
+<body>
+
+<header>
+  <img src="logo.png" alt="DespensApp Logo" />
+  <nav>
+    <a href="#inicio">Inicio</a>
+    <a href="#comestibles">Comestibles</a>
+    <a href="#limpieza">Limpieza</a>
+    <a href="#higiene">Higiene</a>
+    <a href="#combos">Combos</a>
+  </nav>
+  <div class="contacto">
+    WhatsApp: <a href="https://wa.me/5493442641418" target="_blank" style="color:#fff;">+54 9 344 2641418</a><br/>
+    Redes: 
+    <a href="#" target="_blank" style="color:#fff;">Facebook</a> | 
+    <a href="#" target="_blank" style="color:#fff;">Instagram</a>
+  </div>
+</header>
+
+<main>
+  <section id="inicio">
+    <h1>Bienvenidos a DespensApp</h1>
+    <p>Tu tienda virtual para productos de limpieza, higiene y comestibles. ¡Haz tu pedido y lo llevamos a tu casa!</p>
+  </section>
+
+  <section id="comestibles" class="comestibles">
+    <h2>Comestibles</h2>
+    <div class="producto">
+      <span>Arroz 1kg</span>
+      <button onclick="agregarCarrito('Arroz 1kg')">Agregar</button>
+    </div>
+    <div class="producto">
+      <span>Fideos 500g</span>
+      <button onclick="agregarCarrito('Fideos 500g')">Agregar</button>
+    </div>
+  </section>
+
+  <section id="limpieza" class="limpieza">
+    <h2>Limpieza</h2>
+    <div class="producto">
+      <span>Detergente 1L</span>
+      <button onclick="agregarCarrito('Detergente 1L')">Agregar</button>
+    </div>
+    <div class="producto">
+      <span>Lavandina 1L</span>
+      <button onclick="agregarCarrito('Lavandina 1L')">Agregar</button>
+    </div>
+  </section>
+
+  <section id="higiene" class="higiene">
+    <h2>Higiene</h2>
+    <div class="producto">
+      <span>Jabón líquido</span>
+      <button onclick="agregarCarrito('Jabón líquido')">Agregar</button>
+    </div>
+    <div class="producto">
+      <span>Shampoo 400ml</span>
+      <button onclick="agregarCarrito('Shampoo 400ml')">Agregar</button>
+    </div>
+  </section>
+
+  <section id="combos" class="combos">
+    <h2>Combos Especiales</h2>
+    <div class="producto">
+      <span>Combo Limpieza Básico (Detergente + Lavandina)</span>
+      <button onclick="agregarCarrito('Combo Limpieza Básico')">Agregar</button>
+    </div>
+    <div class="producto">
+      <span>Combo Higiene Personal (Jabón + Shampoo)</span>
+      <button onclick="agregarCarrito('Combo Higiene Personal')">Agregar</button>
+    </div>
+  </section>
+</main>
+
+<div id="carrito">
+  <h3>Tu Pedido</h3>
+  <ul id="lista-carrito"></ul>
+  <button id="enviarPedidoBtn" onclick="enviarPedido()">Enviar por WhatsApp</button>
+</div>
+
+<script>
+  const carrito = [];
+
+  function agregarCarrito(producto) {
+    carrito.push(producto);
+    actualizarCarrito();
+  }
+
+  function actualizarCarrito() {
+    const lista = document.getElementById('lista-carrito');
+    lista.innerHTML = '';
+    carrito.forEach((prod, i) => {
+      const li = document.createElement('li');
+      li.textContent = prod;
+      // Botón eliminar
+      const btnEliminar = document.createElement('button');
+      btnEliminar.textContent = 'X';
+      btnEliminar.onclick = () => {
+        carrito.splice(i,1);
+        actualizarCarrito();
+      };
+      li.appendChild(btnEliminar);
+      lista.appendChild(li);
+    });
+  }
+
+  function enviarPedido() {
+    if (carrito.length === 0) {
+      alert("El carrito está vacío");
+      return;
+    }
+    const texto = "Hola! Quisiera hacer este pedido: " + carrito.join(", ");
+    const numero = "5493442641418"; // tu número WhatsApp sin + ni espacios
+    const url = `https://wa.me/${numero}?text=${encodeURIComponent(texto)}`;
+    window.open(url, '_blank');
+  }
+</script>
+
+</body>
+</html>
